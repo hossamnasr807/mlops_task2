@@ -23,6 +23,6 @@ print('Saved model to', model_path)
 train_preds = clf.predict(X)
 acc = (train_preds == y).mean()
 metrics = {'train_accuracy': float(acc), 'model': 'logistic'}
-with open('metrics.json', 'w') as f:
+with open('train_metrics.json', 'w') as f:
     json.dump(metrics, f)
-print('Saved metrics.json')
+print('Saved train_metrics.json')
