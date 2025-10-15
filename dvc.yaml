@@ -16,7 +16,7 @@ stages:
     outs:
       - models/model.pkl
     metrics:
-      - metrics.json:
+      - train_metrics.json:
           cache: false
 
   validate:
