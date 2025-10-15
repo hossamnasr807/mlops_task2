@@ -2,7 +2,7 @@ import os
 import json
 import joblib
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
 # Load preprocessed data
@@ -11,7 +11,7 @@ X_train = train_df.drop('class', axis=1)
 y_train = train_df['class']
 
 # Train model
-model = LogisticRegression(max_iter=2000, random_state=42)
+model = DecisionTreeClassifier(max_depth=None, random_state=42)
 model.fit(X_train, y_train)
 
 # Ensure model directory exists
