@@ -6,9 +6,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # Load preprocessed data
-train_df = pd.read_csv('data/train_encoded.csv')
-X_train = train_df.drop('target', axis=1)
-y_train = train_df['target']
+train_df = pd.read_csv('data/train.csv')
+X_train = train_df.drop('class', axis=1)
+y_train = train_df['class']
 
 # Train model
 model = LogisticRegression(max_iter=2000, random_state=42)

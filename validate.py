@@ -21,9 +21,9 @@ cm = confusion_matrix(y, preds, labels=np.unique(y))  # use sorted labels
 metrics = {'test_accuracy': float(acc), 'model': getattr(model, '__class__', 'model').__name__}
 metrics['classification_report'] = classification_report(y, preds, output_dict=True)
 
-with open('metrics.json', 'w') as f:
+with open('test_metrics.json', 'w') as f:
     json.dump(metrics, f)
-print('Saved metrics.json')
+print('Saved test_metrics.json')
 
 plt.figure(figsize=(8,6))
 sns.heatmap(cm, annot=True, fmt='d', xticklabels=np.unique(y), yticklabels=np.unique(y))

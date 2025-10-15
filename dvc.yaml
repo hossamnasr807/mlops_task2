@@ -26,7 +26,7 @@ stages:
       - models/model.pkl
       - data/test.csv
     metrics:
-      - metrics.json:
+      - test_metrics.json:
           cache: false
     plots:
       - confusion_matrix.png:
