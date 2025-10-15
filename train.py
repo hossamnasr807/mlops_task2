@@ -1,28 +1,28 @@
-import pandas as pd
-import json
 import os
+import json
+import joblib
+import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
+# Load preprocessed data
+train_df = pd.read_csv('data/train_encoded.csv')
+X_train = train_df.drop('target', axis=1)
+y_train = train_df['target']
 
-# Load training data
-df = pd.read_csv('data/train.csv')
-X = df.drop(columns=['class'])
-y = df['class']
+# Train model
+model = LogisticRegression(max_iter=2000, random_state=42)
+model.fit(X_train, y_train)
 
-
-clf = LogisticRegression(max_iter=2000, random_state=42, multi_class='multinomial', solver='saga')
-clf.fit(X, y)
-
-# ensure models dir
+# Ensure model directory exists
 os.makedirs('models', exist_ok=True)
-model_path = 'models/model.pkl'
-print('Saved model to', model_path)
 
+# Save model
+joblib.dump(model, 'models/model.pkl')
+print("Saved model to models/model.pkl")
 
-# quick-train metrics on train set
-train_preds = clf.predict(X)
-acc = (train_preds == y).mean()
-metrics = {'train_accuracy': float(acc), 'model': 'logistic'}
+# Save training metrics
+train_acc = accuracy_score(y_train, model.predict(X_train))
 with open('train_metrics.json', 'w') as f:
-    json.dump(metrics, f)
-print('Saved train_metrics.json')
+    json.dump({'train_accuracy': train_acc}, f)
+print("Saved train_metrics.json")
