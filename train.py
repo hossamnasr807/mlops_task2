@@ -1,12 +1,6 @@
 import pandas as pd
-import joblib
 import json
 import os
-
-
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 
 
